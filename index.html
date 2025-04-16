@@ -1294,17 +1294,6 @@
         });
 
         // Contact form submission
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // In a real implementation, you would send the form data to a server
-                // For this example, we'll just show an alert
-                alert('Thank you for your message! We will get back to you soon.');
-                contactForm.reset();
-            });
-        }
 
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
