@@ -1207,22 +1207,22 @@
                     <div class="contact-form animate slide-right">
                         <h3 class="service-title" style="color: #5D52A5;">Send Us a Message</h3>
                         <p class="service-description" style="color: rgba(255, 255, 255, 0.8);">Fill out the form below and we'll get back to you as soon as possible.</p>
-                        <form id="contactForm">
+                        <form action="https://formspree.io/f/mdkevkqp" method = "post" id="contactForm">
                             <div class="form-group">
                                 <label for="name" class="form-label" >Name</label>
-                                <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
+                                <input type="text" name="name" id="name" class="form-input" placeholder="Enter your name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="form-label" style="margin-top: 10px;">Email</label>
-                                <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                                <input type="email" name="email"id="email" class="form-input" placeholder="Enter your email" required>
                             </div>
                             <div class="form-group">
                                 <label for="phone" class="form-label" style="margin-top: 10px;">Phone</label>
-                                <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number">
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="Enter your phone number">
                             </div>
                             <div class="form-group">
                                 <label for="service" class="form-label" style="margin-top: 10px;">Service Needed</label>
-                                <select id="service" class="form-select" required>
+                                <select id="service" name="service" class="form-select" required>
                                     <option value="web-site">Web-site development</option>
                                     <option value="computer-repair">Computer Repair</option>
                                     <option value="virus-removal">Virus Removal</option>
@@ -1231,7 +1231,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="message" class="form-label" style="margin-top: 10px;">Message</label>
-                                <textarea id="message" class="form-textarea" placeholder="Describe your issue" required></textarea>
+                                <textarea id="message" name="message" class="form-textarea" placeholder="Describe your issue" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Send Message</button>
                         </form>
