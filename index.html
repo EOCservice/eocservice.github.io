@@ -12,6 +12,47 @@
             height: 350px;
             margin: auto;
         }
+                .parent{
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform 0.5s ease;
+        }
+        .parent-image1{
+            position: relative;
+            margin: auto;
+            top:17px;
+            left: 17px;
+            width: 350px;
+            height: 350px;
+            animation: rotateRight 10s linear infinite;
+        }
+        .parent-image2{
+            height: 350px;
+            width: 350px;
+            top: 17px;
+            left: 17px;
+            position: absolute;
+            animation: rotateLeft 10s linear infinite;
+        }
+        @keyframes rotateRight{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+                @keyframes rotateLeft{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(-360deg);
+            }
+        }
         :root {
             --primary: #483D8B;
             --primary-light: #5D52A5;
@@ -1108,7 +1149,10 @@
                     </div>
                 </div>
                 <div class="animate fade-in delay-200">
-                    <img src="https://cdn-icons-png.flaticon.com/512/780/780457.png" alt="Computer Repair Process" class="about-image">
+                        <div class="parent">
+                        <img class="parent-image1" src="outside_red_circle_cleaned.png">
+                        <img class="parent-image2" src="inside_red_circle_cleaned.png">
+                    </div>
                     <h3 class="service-title" style="margin-top: 1.5rem; color: var(--black);">Our Repair Process</h3>
                     <ol class="process-list">
                         <li class="process-item">
