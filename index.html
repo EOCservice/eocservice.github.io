@@ -942,7 +942,6 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
             <div class="container hero-container">
                 <div class="hero-content animate slide-left">
@@ -957,7 +956,7 @@
             </div>
         </section>
 
-        <!-- Services Section -->
+        
         <section id="services" class="services">
             <div class="container" style="align-content: center; align-items: center;">
                 <div class="section-header animate fade-in">
@@ -1005,7 +1004,6 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section id="about" class="about">
             <div class="container about-container">
                 <img src="users-512.png" alt="Our Team" class="about-image1 animate slide-left">
@@ -1047,7 +1045,6 @@
             </div>
         </section>
 
-        <!-- Why Choose Us Section -->
         <section class="why-choose-us">
             <div class="container why-choose-us-container">
                 <div class="animate fade-in">
@@ -1133,7 +1130,6 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section id="contact" class="contact">
             <div class="container">
                 <div class="section-header animate fade-in">
@@ -1261,7 +1257,6 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
         const mobileMenuButton = document.querySelector('.mobile-menu-button');
         const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -1269,7 +1264,6 @@
             mobileMenu.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
         const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -1277,7 +1271,6 @@
             });
         });
 
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1294,12 +1287,8 @@
             });
         });
 
-        // Contact form submission
-
-        // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Animation on scroll
         const animateElements = document.querySelectorAll('.animate');
         
         function checkIfInView() {
@@ -1312,7 +1301,6 @@
                 const elementTopPosition = element.offsetTop;
                 const elementBottomPosition = elementTopPosition + elementHeight;
                 
-                // Check if element is in viewport
                 if (
                     (elementBottomPosition >= windowTopPosition) &&
                     (elementTopPosition <= windowBottomPosition)
@@ -1331,13 +1319,10 @@
             });
         }
         
-        // Run on page load
         checkIfInView();
         
-        // Run on scroll
         window.addEventListener('scroll', checkIfInView);
         
-        // Run on resize
         window.addEventListener('resize', checkIfInView);
     </script>
 </body>
