@@ -7,70 +7,6 @@
     <link rel="icon" type="image/x-icon" href="IMG_20250306_004352_950-Photoroom.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <style>
-            #threedd{
-            width: 350px;
-            height: 350px;
-            margin: auto;
-        }
-        .animate-on-scroll {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.animate-on-scroll.animate {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-                .parent{
-            position: relative;
-            width: 350px;
-            height: 350px;
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: transform 0.5s ease;
-        }
-        .parent-image1{
-            position: relative;
-            margin: auto;
-            top:17px;
-            left: 17px;
-            width: 315px;
-            height: 315px;
-            animation: rotateRight 10s linear infinite;
-        }
-        .parent-image2{
-            height: 315px;
-            width: 315px;
-            top: 17px;
-            left: 17px;
-            position: absolute;
-            animation: rotateLeft 10s linear infinite;
-        }
-        @keyframes rotateRight{
-            0%{
-                transform: rotate(0deg);
-            }
-            100%{
-                transform: rotate(360deg);
-            }
-        }
-                @keyframes rotateLeft{
-            0%{
-                transform: rotate(0deg);
-            }
-            100%{
-                transform: rotate(-360deg);
-            }
-        }
-        @media screen and (max-width: 768px){
-            .hero-content{
-                order: 2;
-            }
-            .hero-image{
-                order: 1;
-            }}
         :root {
             --primary: #483D8B;
             --primary-light: #5D52A5;
@@ -165,9 +101,17 @@
             100% { transform: translateY(0px); }
         }
 
-        .animate {
-            opacity: 0;
-        }
+.animate {
+    opacity: 0;
+    transform: translateY(20px); /* fallback for all types */
+    pointer-events: none; /* prevent flicker interaction */
+}
+
+.animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 
         .animate.fade-in {
             animation: fadeIn 0.8s ease forwards;
@@ -509,10 +453,50 @@
             display: grid;
             gap: 2.5rem;
         }
-
-        .about-image {
+        .parent{
+            position: relative;
             width: 350px;
             height: 350px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform 0.5s ease;
+        }
+        .parent-image1{
+            position: relative;
+            margin: auto;
+            top:17px;
+            left: 17px;
+            width: 315px;
+            height: 315px;
+            animation: rotateRight 10s linear infinite;
+        }
+        .parent-image2{
+            height: 315px;
+            width: 315px;
+            top: 17px;
+            left: 17px;
+            position: absolute;
+            animation: rotateLeft 10s linear infinite;
+        }
+        @keyframes rotateRight{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+                @keyframes rotateLeft{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(-360deg);
+            }
+        }
+        .about-image {
+            width: 400px;
+            height: 400px;
             border-radius: var(--radius);
             overflow: hidden;
             transition: transform 0.5s ease;
@@ -550,6 +534,16 @@
         .about-description {
             color: rgba(255, 255, 255, 0.9);
             font-size: 1.125rem;
+        }
+        .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.animate {
+        opacity: 1;
+        transform: translateY(0);
         }
 
         .feature-list {
@@ -870,7 +864,7 @@
             color: var(--primary-foreground);
             transition: transform 0.3s;
         }
-
+        
         .mobile-menu-button:hover {
             transform: rotate(90deg);
         }
@@ -972,10 +966,14 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+        #threedd{
+            width: 350px;
+            height: 350px;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -1007,8 +1005,10 @@
     </header>
 
     <main>
+        <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+        <!-- Hero Section -->
         <section class="hero">
-            <div class="container hero-container animate-on-scroll">
+            <div class="container hero-container">
                 <div class="hero-content animate slide-left">
                     <h1 class="hero-title">Professional Computer Repair Services</h1>
                     <p class="hero-description">Fast, reliable computer repair services for businesses and individuals. Our expert technicians can diagnose and fix any computer issue.</p>
@@ -1021,16 +1021,16 @@
             </div>
         </section>
 
-        
+        <!-- Services Section -->
         <section id="services" class="services">
-            <div class="container animate-on-scroll" style="align-content: center; align-items: center;">
+            <div class="container " style="align-content: center; align-items: center;">
                 <div class="section-header animate fade-in">
                     <span class="section-tag">Our Services</span>
                     <h2 class="section-title">Expert Computer Repair Solutions</h2>
                     <p class="section-description">We offer a comprehensive range of computer repair and IT services to keep your technology running smoothly.</p>
                 </div>
-                <div class="services-grid" style="align-items: center; align-content: center; align-self: center;">
-                    <div class="service-card animate fade-in delay-100">
+                <div class="services-grid " style="align-items: center; align-content: center; align-self: center;">
+                    <div class="service-card animate fade-in delay-100 " >
                         <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                             <line x1="8" y1="21" x2="16" y2="21"></line>
@@ -1039,7 +1039,7 @@
                         <h3 class="service-title">Computer Repair</h3>
                         <p class="service-description">Hardware troubleshooting, component replacement, and system optimization for desktops and laptops.</p>
                     </div>
-                    <div class="service-card animate fade-in delay-300">
+                    <div class="service-card animate fade-in delay-300 ">
                         <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
                             <rect x="9" y="9" width="6" height="6"></rect>
@@ -1057,7 +1057,7 @@
                     </div>
 
                     
-                    <div class="service-card animate fade-in delay-300">
+                    <div class="service-card animate fade-in delay-300 ">
                         <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                         </svg>
@@ -1069,35 +1069,37 @@
             </div>
         </section>
 
+        <!-- About Section -->
         <section id="about" class="about">
-            <div class="container about-container animate-on-scroll">
+            <div class="container about-container ">
                 <model-viewer id="threedd" src="Group_Icon_0514143005_generate.glb" auto-rotate rotation-per-second="45deg" auto-rotate-delay="0"></model-viewer>
-                <div class="about-content animate slide-right">
+        
+                <div class="about-content animate slide-right ">
                     <h2 class="about-title">About EOCservice</h2>
                     <p class="about-description">With years of experience, we offer fast and reliable repairs to whoever may need them.</p>
                     <div class="feature-list">
-                        <div class="feature-item">
+                        <div class="feature-item ">
                             <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             <span>Certified technicians with years of experience</span>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item ">
                             <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             <span>Fast turnaround times on all repairs</span>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item ">
                             <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
                             <span>Competitive pricing with no hidden fees</span>
                         </div>
-                        <div class="feature-item">
+                        <div class="feature-item ">
                             <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -1110,14 +1112,15 @@
             </div>
         </section>
 
-        <section class="why-choose-us">
-            <div class="container why-choose-us-container animate-on-scroll">
-                <div class="animate fade-in">
+        <!-- Why Choose Us Section -->
+        <section class="why-choose-us ">
+            <div class="container why-choose-us-container ">
+                <div class="animate fade-in ">
                     <span class="section-tag">Why Choose Us</span>
                     <h2 class="about-title" style="color: var(--black);">Fast, Reliable Service</h2>
                     <p class="about-description" style="color: var(--muted-foreground);">We understand how important your technology is to your daily life and business operations. That's why we prioritize quick turnaround times without compromising on quality.</p>
-                    <div class="features-grid">
-                        <div class="feature-card">
+                    <div class="features-grid ">
+                        <div class="feature-card ">
                             <svg class="feature-card-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
@@ -1167,10 +1170,11 @@
                     </div>
                 </div>
                 <div class="animate fade-in delay-200">
-                        <div class="parent">
+                    <div class="parent">
                         <img class="parent-image1" src="outside_red_circle_cleaned.png">
                         <img class="parent-image2" src="inside_red_circle_cleaned.png">
                     </div>
+                    <!--<img src="https://cdn-icons-png.flaticon.com/512/780/780457.png" alt="Computer Repair Process" class="about-image">-->
                     <h3 class="service-title" style="margin-top: 1.5rem; color: var(--black);">Our Repair Process</h3>
                     <ol class="process-list">
                         <li class="process-item">
@@ -1198,9 +1202,10 @@
             </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact" class="contact">
-            <div class="container animate-on-scroll">
-                <div class="section-header animate fade-in animate-on-scroll">
+            <div class="container ">
+                <div class="section-header animate fade-in">
                     <h2 class="section-title" style="color: var(--primary-foreground);">Get in Touch</h2>
                     <p class="section-description" style="color: rgba(255, 255, 255, 0.8);">Have a question or need a repair? Contact us today for fast, professional service.</p>
                 </div>
@@ -1271,14 +1276,14 @@
                     <div class="contact-form animate slide-right">
                         <h3 class="service-title" style="color: #5D52A5;">Send Us a Message</h3>
                         <p class="service-description" style="color: rgba(255, 255, 255, 0.8);">Fill out the form below and we'll get back to you as soon as possible.</p>
-                        <form action="https://formspree.io/f/mdkevkqp" method = "POST" id="contactForm">
+                        <form action="https://formspree.io/f/mdkevkqp" method="post" id="contactForm">
                             <div class="form-group">
                                 <label for="name" class="form-label" >Name</label>
-                                <input type="text" name="name" id="name" class="form-input" placeholder="Enter your name" required>
+                                <input type="text" id="name" class="form-input" name="name" placeholder="Enter your name" required>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="form-label" style="margin-top: 10px;">Email</label>
-                                <input type="email" name="email"id="email" class="form-input" placeholder="Enter your email" required>
+                                <input type="email" name="email" id="email" class="form-input" placeholder="Enter your email" required>
                             </div>
                             <div class="form-group">
                                 <label for="phone" class="form-label" style="margin-top: 10px;">Phone</label>
@@ -1297,12 +1302,12 @@
                                 <label for="message" class="form-label" style="margin-top: 10px;">Message</label>
                                 <textarea id="message" name="message" class="form-textarea" placeholder="Describe your issue" required></textarea>
                             </div>
-                            <input type="hidden" name="_next" value="https://eocservice.github.io/">
+                            <input type="hidden" name="_next" value="thankyou.html" />
                             <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 15px;">Send Message</button>
                         </form>
                     </div>
                 </div>
-            </div>
+             </div>
         </section>
     </main>
 
@@ -1325,6 +1330,7 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
         const mobileMenuButton = document.querySelector('.mobile-menu-button');
         const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -1332,6 +1338,7 @@
             mobileMenu.classList.toggle('active');
         });
 
+        // Close mobile menu when clicking on a link
         const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -1339,6 +1346,7 @@
             });
         });
 
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1355,10 +1363,24 @@
             });
         });
 
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real implementation, you would send the form data to a server
+                // For this example, we'll just show an alert
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            });
+        }
 
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // Animation on scroll
         const animateElements = document.querySelectorAll('.animate');
-        
+
         function checkIfInView() {
             const windowHeight = window.innerHeight;
             const windowTopPosition = window.scrollY;
@@ -1369,45 +1391,90 @@
                 const elementTopPosition = element.offsetTop;
                 const elementBottomPosition = elementTopPosition + elementHeight;
                 
-                if (
-                    (elementBottomPosition >= windowTopPosition) &&
-                    (elementTopPosition <= windowBottomPosition)
-                ) {
+                // Check if element is in viewport
+                if ((elementBottomPosition >= windowTopPosition) && 
+                    (elementTopPosition <= windowBottomPosition)) {
+                    
+                    // Add the appropriate animation class based on what's defined
                     if (element.classList.contains('fade-in')) {
-                        element.style.opacity = '1';
-                        element.style.animation = 'fadeIn 2s ease forwards';
+                        element.style.animation = 'fadeIn 0.8s ease forwards';
                     } else if (element.classList.contains('slide-left')) {
-                        element.style.opacity = '1';
-                        element.style.animation = 'slideInLeft 2s ease forwards';
+                        element.style.animation = 'slideInLeft 0.8s ease forwards';
                     } else if (element.classList.contains('slide-right')) {
-                        element.style.opacity = '1';
-                        element.style.animation = 'slideInRight 2s ease forwards';
+                        element.style.animation = 'slideInRight 0.8s ease forwards';
+                    }
+                    
+                    // Also handle delay classes if they exist
+                    if (element.classList.contains('delay-100')) {
+                        element.style.animationDelay = '0.1s';
+                    } else if (element.classList.contains('delay-200')) {
+                        element.style.animationDelay = '0.2s';
+                    } else if (element.classList.contains('delay-300')) {
+                        element.style.animationDelay = '0.3s';
+                    } else if (element.classList.contains('delay-400')) {
+                        element.style.animationDelay = '0.4s';
+                    } else if (element.classList.contains('delay-500')) {
+                        element.style.animationDelay = '0.5s';
                     }
                 }
             });
         }
-  document.addEventListener("DOMContentLoaded", function () {
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate");
-            observer.unobserve(entry.target);
-          }
+
+        // Run on page load
+        window.addEventListener('DOMContentLoaded', checkIfInView);
+
+        // Run on scroll with throttling for performance
+        let isScrolling;
+        window.addEventListener('scroll', function() {
+            // Clear our timeout throughout the scroll
+            window.clearTimeout(isScrolling);
+            
+            // Set a timeout to run after scrolling stops
+            isScrolling = setTimeout(function() {
+                checkIfInView();
+            }, 100);
+        }, false);
+       
+    document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll('.animate');
+        const animationMap = {
+            'fade-in': 'fadeIn',
+            'slide-left': 'slideInLeft',
+            'slide-right': 'slideInRight'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const el = entry.target;
+                const animationClass = [...el.classList].find(cls =>
+                    Object.keys(animationMap).includes(cls)
+                );
+
+                if (animationClass) {
+                    if (entry.isIntersecting) {
+                        el.style.animation = 'none';
+                        void el.offsetWidth;
+                        el.style.animation = `${animationMap[animationClass]} 0.8s ease forwards`;
+
+                        const delayClass = [...el.classList].find(cls => cls.startsWith('delay-'));
+                        if (delayClass) {
+                            const delay = delayClass.replace('delay-', '');
+                            el.style.animationDelay = `0.${delay}s`;
+                        } else {
+                            el.style.animationDelay = '0s';
+                        }
+                    } else {
+                        el.style.animation = 'none';
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedElements.forEach(el => {
+            observer.observe(el);
         });
-      },
-      { threshold: 0.1 }
-    );
-
-    document.querySelectorAll(".animate-on-scroll").forEach(elem => {
-      observer.observe(elem);
     });
-  });
-
-        checkIfInView();
-        
-        window.addEventListener('scroll', checkIfInView);
-        
+        // Run on resize
         window.addEventListener('resize', checkIfInView);
     </script>
 </body>
