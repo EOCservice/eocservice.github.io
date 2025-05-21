@@ -12,6 +12,17 @@
             height: 350px;
             margin: auto;
         }
+        .animate-on-scroll {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
                 .parent{
             position: relative;
             width: 350px;
@@ -997,7 +1008,7 @@
 
     <main>
         <section class="hero">
-            <div class="container hero-container">
+            <div class="container hero-container animate-on-scroll">
                 <div class="hero-content animate slide-left">
                     <h1 class="hero-title">Professional Computer Repair Services</h1>
                     <p class="hero-description">Fast, reliable computer repair services for businesses and individuals. Our expert technicians can diagnose and fix any computer issue.</p>
@@ -1012,7 +1023,7 @@
 
         
         <section id="services" class="services">
-            <div class="container" style="align-content: center; align-items: center;">
+            <div class="container animate-on-scroll" style="align-content: center; align-items: center;">
                 <div class="section-header animate fade-in">
                     <span class="section-tag">Our Services</span>
                     <h2 class="section-title">Expert Computer Repair Solutions</h2>
@@ -1059,7 +1070,7 @@
         </section>
 
         <section id="about" class="about">
-            <div class="container about-container">
+            <div class="container about-container animate-on-scroll">
                 <model-viewer id="threedd" src="Group_Icon_0514143005_generate.glb" auto-rotate rotation-per-second="45deg" auto-rotate-delay="0"></model-viewer>
                 <div class="about-content animate slide-right">
                     <h2 class="about-title">About EOCservice</h2>
@@ -1100,7 +1111,7 @@
         </section>
 
         <section class="why-choose-us">
-            <div class="container why-choose-us-container">
+            <div class="container why-choose-us-container animate-on-scroll">
                 <div class="animate fade-in">
                     <span class="section-tag">Why Choose Us</span>
                     <h2 class="about-title" style="color: var(--black);">Fast, Reliable Service</h2>
@@ -1188,8 +1199,8 @@
         </section>
 
         <section id="contact" class="contact">
-            <div class="container">
-                <div class="section-header animate fade-in">
+            <div class="container animate-on-scroll">
+                <div class="section-header animate fade-in animate-on-scroll">
                     <h2 class="section-title" style="color: var(--primary-foreground);">Get in Touch</h2>
                     <p class="section-description" style="color: rgba(255, 255, 255, 0.8);">Have a question or need a repair? Contact us today for fast, professional service.</p>
                 </div>
@@ -1375,7 +1386,24 @@
                 }
             });
         }
-        
+  document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll(".animate-on-scroll").forEach(elem => {
+      observer.observe(elem);
+    });
+  });
+
         checkIfInView();
         
         window.addEventListener('scroll', checkIfInView);
