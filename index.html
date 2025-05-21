@@ -53,6 +53,13 @@
                 transform: rotate(-360deg);
             }
         }
+        @media screen and (max-width: 768px){
+            .hero-content animate slide-left{
+                order: 2;
+            }
+            .hero-image animate slide-right{
+                order: 1;
+            }}
         :root {
             --primary: #483D8B;
             --primary-light: #5D52A5;
